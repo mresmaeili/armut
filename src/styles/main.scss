@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+//  brand colors
+$orange: #ff6000;
+$darkOrange: #f24545;
+$white: #fff;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// global variables
+$family-sans-serif: 'Nunito', sans-serif;
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $orange;
+$success: $darkOrange;
+$link: $white;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// component variables
+$body-background-color: $white;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$progress-value-background-color: $orange;
+$input-shadow: none;
+
+// Bulma Imports
+@import '../../node_modules/bulma/sass/utilities/_all.sass';
+@import '../../node_modules/bulma/sass/base/_all.sass';
+@import '../../node_modules/bulma/sass/elements/button.sass';
+@import '../../node_modules/bulma/sass/elements/container.sass';
+@import '../../node_modules/bulma/sass/elements/title.sass';
+@import '../../node_modules/bulma/sass/elements/notification.sass';
+@import '../../node_modules/bulma/sass/elements/progress.sass';
+@import '../../node_modules/bulma/sass/components/card.sass';
+@import '../../node_modules/bulma/sass/layout/section.sass';
+@import '../../node_modules/bulma/sass/grid/columns.sass';

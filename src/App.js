@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MovieList from './components/MovieList';
+import SelectedMovie from './components/SelectedMovie';
+import movieList from './data/movieList.json';
+import './styles/main.css';
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    if (movieList) setMovies(movieList);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Route exact path='/'>
+        <section className='section'>
+          <MovieList movies={movies} />
+        </section>
+      </Route>
+      <Switch>
+        <Route exact path='/movie/:id'>
+          <SelectedMovie />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
