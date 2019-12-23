@@ -1625,8 +1625,8 @@ a.has-text-danger:hover, a.has-text-danger:focus {
     padding-left: calc(1em + 0.25em);
     padding-right: calc(1em + 0.25em); }
   .button.is-circle {
-    height: 7%;
-    width: 7%;
+    height: 8%;
+    width: 8%;
     border-radius: 50%; }
 
 

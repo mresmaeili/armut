@@ -4,7 +4,6 @@ import movieDetails from '../data/movieDetails.json';
 
 export const MovieContext = createContext();
 export const DetailContext = createContext();
-export const WatchListContext = createContext();
 
 export const MovieProvider = props => {
   const [movies, setMovies] = useState([]);
@@ -26,23 +25,16 @@ export const DetailProvider = props => {
   useEffect(() => {
     if (movieDetails) setDetails(movieDetails);
   }, []);
+  function toggleWatch(id) {
+    const newDetails = [...movieDetails];
+    const detail = newDetails.find(detail => detail.id === id);
+    detail.watchList = !detail.watchList;
+    setDetails(newDetails);
+  }
 
   return (
-    <DetailContext.Provider value={[details, setDetails]}>
+    <DetailContext.Provider value={[details, setDetails, toggleWatch]}>
       {props.children}
     </DetailContext.Provider>
-  );
-};
-
-export const WatchListProvider = props => {
-  const [watchList, setWatchList] = useState(false);
-  const toggleWatch = watchList => {
-    const newWatchlist = !watchList;
-    setWatchList(newWatchlist);
-  };
-  return (
-    <WatchListContext.Provider value={[watchList, setWatchList, toggleWatch]}>
-      {props.children}
-    </WatchListContext.Provider>
   );
 };

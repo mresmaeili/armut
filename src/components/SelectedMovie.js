@@ -1,55 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { DetailContext, WatchListContext } from '../store/MovieContext';
+import { Link, useParams } from 'react-router-dom';
+import { DetailContext } from '../store/MovieContext';
 import timeConverter from './TimeConverter';
 import '../styles/main.css';
 
 const SelectedMovie = () => {
-  const [details] = useContext(DetailContext);
-  const [watchList, setWatchList, toggleWatch] = useContext(WatchListContext);
+  const [details, setDetails, toggleWatch] = useContext(DetailContext);
   let { id } = useParams();
-
-  function handleToggleWatch() {
-    toggleWatch(watchList);
-  }
-
-  function WatchlistButton() {
-    if (watchList === true) {
-      return (
-        <button className='button is-success' onClick={handleToggleWatch}>
-          <i className='fas fa-minus'></i>
-          REMOVE FROM WATCHLIST
-        </button>
-      );
-    } else
-      return (
-        <button className='button is-primary' onClick={handleToggleWatch}>
-          <i className='fas fa-plus'></i> ADD TO WATCHLIST
-        </button>
-      );
-  }
-  function WatchlistSmall() {
-    if (watchList === true) {
-      return (
-        <button
-          className='button is-success is-circle'
-          onClick={handleToggleWatch}
-        >
-          <i className='fas fa-minus'></i>
-        </button>
-      );
-    } else
-      return (
-        <button
-          className='button is-primary is-circle'
-          onClick={handleToggleWatch}
-        >
-          <i className='fas fa-plus '></i>
-        </button>
-      );
-  }
-
   if (details) {
     const [filteredDetails] = details.filter(detail => {
       return detail.id === id;
@@ -65,8 +22,49 @@ const SelectedMovie = () => {
       storyline,
       directors,
       writers,
-      actors
+      actors,
+      watchList
     } = filteredDetails;
+
+    function handleToggleWatch() {
+      toggleWatch(filteredDetails.id);
+    }
+
+    function WatchlistButton() {
+      if (watchList === true) {
+        return (
+          <button className='button is-success' onClick={handleToggleWatch}>
+            <i className='fas fa-minus'></i>
+            REMOVE FROM WATCHLIST
+          </button>
+        );
+      } else
+        return (
+          <button className='button is-primary' onClick={handleToggleWatch}>
+            <i className='fas fa-plus'></i> ADD TO WATCHLIST
+          </button>
+        );
+    }
+    function WatchlistSmall() {
+      if (watchList === true) {
+        return (
+          <button
+            className='button is-success is-circle'
+            onClick={handleToggleWatch}
+          >
+            <i className='fas fa-minus'></i>
+          </button>
+        );
+      } else
+        return (
+          <button
+            className='button is-primary is-circle'
+            onClick={handleToggleWatch}
+          >
+            <i className='fas fa-plus '></i>
+          </button>
+        );
+    }
 
     return (
       <div>
