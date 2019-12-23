@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import movieList from '../data/movieList.json';
 import movieDetails from '../data/movieDetails.json';
 
@@ -6,11 +6,7 @@ export const MovieContext = createContext();
 export const DetailContext = createContext();
 
 export const MovieProvider = props => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    if (movieList) setMovies(movieList);
-  }, []);
+  const [movies] = useState(movieList);
 
   return (
     <MovieContext.Provider value={[movies]}>
@@ -20,20 +16,10 @@ export const MovieProvider = props => {
 };
 
 export const DetailProvider = props => {
-  const [details, setDetails] = useState('');
-
-  useEffect(() => {
-    if (movieDetails) setDetails(movieDetails);
-  }, []);
-  function toggleWatch(id) {
-    const newDetails = [...movieDetails];
-    const detail = newDetails.find(detail => detail.id === id);
-    detail.watchList = !detail.watchList;
-    setDetails(newDetails);
-  }
+  const [details, setDetails] = useState(movieDetails);
 
   return (
-    <DetailContext.Provider value={[details, setDetails, toggleWatch]}>
+    <DetailContext.Provider value={[details, setDetails]}>
       {props.children}
     </DetailContext.Provider>
   );
