@@ -39,6 +39,6 @@
   "devDependencies": {
     "bulma": "^0.8.0",
     "concurrently": "^5.0.1",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.1"
   }
 }
